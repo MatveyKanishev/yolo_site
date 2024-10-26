@@ -1,0 +1,82 @@
+
+
+.back {
+   background: rgb(215, 250, 224);
+   width: 800px;
+   margin: 0 auto;
+}
+/* .sentrl {
+   width: 800px;
+   margin: auto;
+} */
+body {
+	font-family: 'Trebuchet MS', Helvetica, sans-serif;
+   width: 800px;
+   margin: auto;
+}
+.cod {
+   background: rgb(247,247,247);
+   font-family: 'JetBrains Mono', sans-serif;
+   padding: 5pt;
+}
+.blue_c {
+   color: blue;
+}
+.oreng_c {
+   color: rgb(163,21,21);
+}
+.green_c {
+   color: rgb(17,102,68)
+}
+.purpl_c {
+   color: rgb(175,0,219);
+}
+/* div {
+   background: rgb(247,247,247);
+   font-family: 'Roboto', sans-serif;
+   padding: 100;
+} */
+
+.text1 {
+   color: rgb(73, 36, 36);
+   background: rgb(215, 250, 224);
+   padding: 10pt;
+   border-radius: 10pt;
+   width: 800px;
+   margin: auto;
+   line-height: 1.45
+}
+.text2 {
+   background: rgb(168, 168, 168);
+   padding: 10pt;
+   border-radius: 10pt;
+   width: 800px;
+   margin: auto;
+}
+.t_v {
+   background: rgba(2, 68, 2, 0.438);
+   border-radius: 4pt;
+   padding: 1.01pt;
+
+}
+
+.giga {
+   margin-left: -10px;
+   margin-bottom: 5px;
+}
+.mast_giga {
+   margin-top: 50pt;
+   width: 1000px;
+   margin-bottom: 5pt;
+}
+.mini_giga {
+   color: rgb(105, 105, 105);
+   margin-top: 5pt;
+
+   margin-bottom: 25pt;
+}
+.data {
+   background: rgb(187, 187, 187);
+   border-radius: 4pt;
+   padding: ;
+}
