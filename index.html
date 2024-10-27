@@ -1,90 +1,171 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="В этой не большой статье я раскажу как с нуля реализовать компьютерное зрение за 10 минут. Для этого нам понадобиться google colab и модель yolov10">
+    <meta name="keywords" content="yolo11, YOLO, Google Collab, туториал, гайд, компьютерное зрение">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/jetbrains-mono" rel="stylesheet">
     <title>Компьютерное зрение</title>
 </head>
+
 <body>
-    <header></header>
-    <main >
-        <h1 class="mast_giga">Реализация компьютерного зрение с нуля за 10 минут</h1>
-        <p class="mini_giga">В этой не большой статье я раскажу как с нуля реализовать компьютерное зрение за 10 минут.
-            Для этого нам понадобиться  google colab и модель yolov10</p>
+    <main>
+        <header>
+            <h1>Реализация компьютерного зрение с нуля за 10 минут</h1>
+            <p>
+                В этой не большой статье я раскажу как с нуля реализовать компьютерное зрение за 10 минут.
+                Для этого нам понадобиться google colab и модель yolov10
+            </p>
+        </header>
         <article>
+            <h2>YOLO </h2>
             <section>
-                
+                <h3>
+                    Введение
+                </h3>
+                <p class="text1">
+                    <span class="t_v">YOLO (You Only Look Once)</span> – это современная модель обнаружения объектов,<span
+                        class="t_v">разработанная Джозефом Редмоном</span> и другими исследователями в 2015 году.
+                    Эта <span class="t_v">модель отличается своей эффективностью и скоростью</span>, так как она
+                    анализирует
+                    изображение всего лишь один раз.
+                    <br><br>
+                    YOLO нашла широкое применение в различных областях, таких как автономное вождение,
+                    безопасность, робототехника и распознавание лиц. С тех пор появилось множество версий YOLO,
+                    каждая из которых предлагает еще более точные и быстрые решения для задач детекции объектов.
+                </p>
             </section>
-            <h2 class = "giga">YOLO </h2>
-            <p class="text1">
-                <a class="t_v">YOLO (You Only Look Once)</a> – это современная модель обнаружения объектов,<span class="t_v">разработанная Джозефом Редмоном</span> и другими исследователями в 2015 году. 
-                Эта <span class="t_v">модель отличается своей эффективностью и скоростью</span>, так как она анализирует изображение всего лишь один раз.
-                <br><br>
-                YOLO нашла широкое применение в различных областях, таких как автономное вождение, 
-                безопасность, робототехника и распознавание лиц. С тех пор появилось множество версий YOLO, 
-                каждая из которых предлагает еще более точные и быстрые решения для задач детекции объектов.
-            </p>
-            <h3 class="giga">Версии YOLO</h3>
-            <p class="text1">На данный момент существует множество версий начиная c <span class="t_v">yolov1</span> (первая версия) заканчивая <span class="t_v">yolo11</span> (актуальная версия). <br>
-                однако у каждой модели есть свои вариации отличающиеся как по производительности так и по назначению: классификация, обнаружения и сегментация. <p>
-                <img src="https://avatars.mds.yandex.net/i?id=919c54e1d69491949ac3743708bdea71_l-5259265-images-thumbs&n=13", width="750">
+            <section>
+                <h3>Версии YOLO</h3>
+                <p class="text1">На данный момент существует множество версий начиная c <span class="t_v">yolov1</span>
+                    (первая версия) заканчивая <span class="t_v">yolo11</span> (актуальная версия). <br>
+                    однако у каждой модели есть свои вариации отличающиеся как по производительности так и по
+                    назначению:
+                    классификация, обнаружения и сегментация.
+                </p>
+                <div class="img-container">
+                    <img loading="lazy" src="img.png" alt="Классификация">
+                    <img loading="lazy" src="img2.png" alt="Обнаружения">
+                    <img loading="lazy" src="img3.png" alt="Сегментация">
+                </div>
+                <p class="text1">
+                    в статье будет использоваться <span class="t_v">yolo11m</span> - это модель
+                    <span class="t_v">средней мощности</span>, направленная на <span class="t_v">обнаружение
+                        объекта</span>
+                </p>
+            </section>
+        </article>
+        <article>
+            <h2>Google Colab</h2>
+            <section>
+                <h3>О сервисе</h3>
+                <p class="text1">Google Colab - это бесплатная интерактивная облачная среда для работы с кодом от
+                    Google.
+                    Она позволяет пользователям запускать код и работать с данными в облаке,
+                    что особенно полезно для задач, требующих большого объема памяти или мощностей процессора.
+                </p>
+            </section>
+            <section>
+                <h3>
+                    Что бы начать работу в google colab нужно:
+                </h3>
+                <ol>
+                    <li>зайти на сайт google colab</li>
+                    <li>авторизоваться</li>
+                    <li>создать новый блокнот на диске после нам не обходимо загрузить в colab изображение яблока.</li>
 
-            <p  class="text1">в статье будет использоваться <span class="t_v">yolo11m</span> - это модель <span class="t_v">средней мощности</span>, направленная на <span class="t_v">обнаружение объекта</span></p>
-            <h2 class = "giga">Google Colab</h2>
-            <p class="text1">Google Colab - это бесплатная интерактивная облачная среда для работы с кодом от Google. Она позволяет пользователям запускать код и работать с данными в облаке, 
-                что особенно полезно для задач, требующих большого объема памяти или мощностей процессора.<br><br>
-                    Что бы начать работу в google colab нужно:<br>
-                    &nbsp;1. зайти на сайт google colab <br>
-                    &nbsp;2. авторизоваться <br>
-                    &nbsp;3. создать новый блокнот на диске <br><br>
-            
-                после нам не обходимо загрузить в colab изображение яблока. <br>
-                &nbsp;1. переходим в раздел файлы <br>
-                &nbsp;2. нажимаем на кнопку загрузить в сесионное хранилище <br>
-                &nbsp;3. выбираем нужный файл и жмём ок на всплывающем окне 
-            </p>
-            
-            <p>всё теперь можем наконецто приступить к написанию кода</p>
-
-            <p class="text1">для начало скачаем пакет ultralytics. что бы это сделать нужно ввести строку ниже и запустить ячейку или нажать сочетание клавиш <span class="t_v">shift + enter</span> или <span class="t_v">ctrl + enter</span></p>
-            <p class="cod"><a class="blue">!</a>pip install ultralytics</p>
-            <p class="text1">создаём новую ячейку и в ней импортируем Yolo, выбираем модель и указываем путь до изображения. что бы указать путь до изображения найдите файл в разделе файлы, нажмите правой кнопкой мыши и выберите "скопировать путь". вставляем скопированный текст.</p>
+                </ol>
+            </section>
+            <section>
+                <h3>
+                    После нам не обходимо загрузить в colab изображение яблока:
+                </h3>
+                <ol>
+                    <li>переходим в раздел файлы</li>
+                    <li>нажимаем на кнопку загрузить в сесионное хранилище</li>
+                    <li>выбираем нужный файл и жмём ок на всплывающем окне</li>
+                </ol>
+                <div class="img-container">
+                    <img loading="lazy" src="apl.png" alt="Яблоко">
+                </div>
+                <p>Всё теперь можем наконец-то приступить к написанию кода</p>
+            </section>
+        </article>
+        <article>
+            <h2>Кот(д)</h2>
+            <p class="text1">Для начало скачаем пакет ultralytics. что бы это сделать нужно ввести строку ниже и
+                запустить ячейку или нажать сочетание клавиш <span class="t_v">shift + enter</span> или <span
+                    class="t_v">ctrl + enter</span></p>
+            <p class="cod"><span class="blue">!</span>pip install ultralytics</p>
+            <p class="text1">Cоздаём новую ячейку и в ней импортируем Yolo, выбираем модель и указываем путь до
+                изображения. что бы указать путь до изображения найдите файл в разделе файлы, нажмите правой кнопкой
+                мыши и выберите "скопировать путь". вставляем скопированный текст.</p>
             <p class="cod">
                 <span class="purpl_c">from</span> ultralytics <span class="purpl_c">import</span> YOLO <br>
-                model = YOLO <span class="blue_c">(</span><span class="oreng_c">"yolo11m.pt"</span><span class="blue_c">)</span> <br>
-                image = '<span class="oreng_c">вставляем сюда скопированый путь</span>'
+                model = YOLO <span class="blue_c">(</span><span class="orange_c">"yolo11m.pt"</span><span
+                    class="blue_c">)</span> <br>
+                image = <span class="orange_c">"вставляем сюда скопированый путь"</span>
             </p>
-                <p class="text1">после опять создаём новую ячейку и вставляем данный код</p>
-                <p class="cod">results = model.predict<span class="blue_c">(</span>image<span class="blue_c">)</span> <br>
-                    result = results<span class="blue_c">[</span><span class="green_c">0</span><span class="blue_c">]</span> <br>
-                    print<span class="blue_c">(</span>"количество:", len<span class="blue_c">(</span>result.boxes<span class="blue_c">)</span><span class="blue_c">)</span> <br>
-                    for box in result.boxes: <br>
-                    &nbsp;label = result.names<span class="blue_c">[</span>box.cls<span class="blue_c"><span class="green_c">[0]</span></span>.item<span class="green_c">()</span><span class="blue_c">]</span> <br>
-                    &nbsp;cords = <span class="blue_c">[</span>round<span class="blue_c">(</span>x<span class="blue_c">)</span> for x in box.xyxy<span class="green_c">[0]</span>.tolist<span class="green_c">()</span><span class="blue_c">]</span> <br>
-                    &nbsp;prob = box.conf<span class="blue_c">[</span>0<span class="blue_c">]</span>.item<span class="blue_c">()</span><br>
-                    &nbsp;print<span class="blue_c">(</span><span class="oreng_c">"Object type: "</span>, label<span class="blue_c">)</span> <br>
-                    &nbsp;print<span class="blue_c">(</span><span class="oreng_c">"Coordinates: "</span>, cords<span class="blue_c">)</span> <br>
-                    &nbsp;print<span class="blue_c">(</span><span class="oreng_c">"Probability"</span>, int<span class="blue_c">(</span>prob * 100<span class="blue_c">)</span>,'%\n'<span class="blue_c">)</span> <br>
-                    <p class="text1">данный код одаёт наше изображение модели, а та в свою очередь обрабатывает её.
-                        в cтроке вывода мы получаем
-                        количество найденных объектов и их параметры (тип объекта, его координаты на картинке и вероятность того, чем это объект является)
-                        последнее что осталось сделать так это вывести результат. для этого ипортируем Image и выводим полученную картинку.</p>
-                    <p class="cod">
-                        <span class="purpl_c">from</span> PIL <span class="purpl_c">import</span> Image<br>
-                        Image.fromarray<span class="blue_c">(</span>result.plot(<span class="blue_c">)</span><span class="blue_c">[</span>:,:,::-1<span class="blue_c">]</span><span class="blue_c">)</span></p>
-                    <p class="text1">воуля мы получили изображение <br>с распознаным ябоком, но YOLO можно распозновать не только яблоки ниже перечисленны все объекты которые может распозновать эта модель </p> 
-                    <p class="cod">человек, велосипед, автомобиль, мотоцикл, самолет, автобус, поезд, грузовик, лодка, светофор, пожарный гидрант, знак остановки, 
-                        парковочный счетчик, скамейка, птица, кошка, собака, лошадь, овца, корова, слон, медведь, зебра, жираф, рюкзак, зонт, сумочка, 
-                        галстук, чемодан, фрисби, лыжи, сноуборд, спортивный мяч, воздушный змей, бейсбольная бита, бейсбольная перчатка, скейтборд, 
-                        доска для серфинга, теннисная ракетка, бутылка, бокал для вина, чашка, вилка, нож, ложка, миска, банан, яблоко, сэндвич, апельсин, 
-                        брокколи, морковь, хот-дог, пицца, пончик, торт, стул, диван, растение в горшке, кровать, обеденный стол, туалет, телевизор, ноутбук, 
-                        мышь, пульт, клавиатура, мобильный телефон, микроволновая печь, духовка, тостер, раковина, холодильник, книга, часы, ваза, ножницы, плюшевый мишка, фен, зубная щетка</p> <br>
-                    <p> Но и это не всё Yolo можно очень просто обучить на распознование чего угодно, об обучении этой модели вы узнаете в следующей стать, которая выйдет когданибудь но не сейчас :) </h3>
+            <p class="text1">После опять создаём новую ячейку и вставляем данный код</p>
+            <p class="cod">results = model.predict<span class="blue_c">(</span>image<span class="blue_c">)</span> <br>
+                result = results<span class="blue_c">[</span><span class="green_c">0</span><span class="blue_c">]</span>
+                <br>
+                <span class="yellow_c">print</span><span class="blue_c">(</span><span class="orange_c">"количество:"</span>, <span class="yellow_c">len</span><span class="blue_c">(</span>result.boxes<span
+                    class="blue_c">)</span><span class="blue_c">)</span> <br>
+                <span class="purpl_c">for</span> box <span class="blue_c">in</span> result.boxes: <br>
+                &nbsp;&nbsp;label = result.names<span class="blue_c">[</span>box.cls<span class="blue_c"><span
+                        class="green_c">[0]</span></span>.item<span class="green_c">()</span><span
+                    class="blue_c">]</span> <br>
+                    &nbsp;&nbsp;cords = <span class="blue_c">[</span><span class="yellow_c">round</span><span class="blue_c">(</span>x<span
+                    class="blue_c">)</span> <span class="purpl_c">for</span> x <span class="blue_c">in</span> box.xyxy<span class="green_c">[0]</span>.tolist<span
+                    class="green_c">()</span><span class="blue_c">]</span> <br>
+                    &nbsp;&nbsp;prob = box.conf<span class="blue_c">[</span>0<span class="blue_c">]</span>.item<span
+                    class="blue_c">()</span><br>
+                    &nbsp;&nbsp;<span class="yellow_c">print</span><span class="blue_c">(</span><span class="orange_c">"Object type: "</span>, label<span
+                    class="blue_c">)</span> <br>
+                    &nbsp;&nbsp;<span class="yellow_c">print</span><span class="blue_c">(</span><span class="orange_c">"Coordinates: "</span>, cords<span
+                    class="blue_c">)</span> <br>
+                    &nbsp;&nbsp;<span class="yellow_c">print</span><span class="blue_c">(</span><span class="orange_c">"Probability"</span>, int<span
+                    class="blue_c">(</span>prob * 100<span class="blue_c">)</span>,<span class="orange_c">'%\n'</span><span class="blue_c">)</span>
+                <br>
+            <p class="text1">Данный код даёт наше изображение модели, а та в свою очередь обрабатывает её.
+                в cтроке вывода мы получаем
+                количество найденных объектов и их параметры (тип объекта, его координаты на картинке и вероятность
+                того, чем это объект является)
+                последнее что осталось сделать так это вывести результат. Для этого ипортируем Image и выводим
+                полученную картинку.</p>
+            <p class="cod">
+
+                <span class="purpl_c">from</span> PIL <span class="purpl_c">import</span> Image<br>
+                Image.fromarray<span class="blue_c">(</span>result.plot<span class="blue_c">(</span><span class="blue_c">)</span><span
+                    class="blue_c">[</span>:,:,::-1<span class="blue_c">]</span><span class="blue_c">)</span>
+            </p>
+            <div class="img-container">
+                <img loading="lazy" src="apl_cv.png" alt="Яблоко">
+            </div>
+            <p class="text1">ВУАЛЯ мы получили изображение с распознаным яблоком, но YOLO можно распозновать не
+                только яблоки ниже перечисленны все объекты которые может распозновать эта модель </p>
+            <p class="cod">человек, велосипед, автомобиль, мотоцикл, самолет, автобус, поезд, грузовик, лодка, светофор,
+                пожарный гидрант, знак остановки,
+                парковочный счетчик, скамейка, птица, кошка, собака, лошадь, овца, корова, слон, медведь, зебра, жираф,
+                рюкзак, зонт, сумочка,
+                галстук, чемодан, фрисби, лыжи, сноуборд, спортивный мяч, воздушный змей, бейсбольная бита, бейсбольная
+                перчатка, скейтборд,
+                доска для серфинга, теннисная ракетка, бутылка, бокал для вина, чашка, вилка, нож, ложка, миска, банан,
+                яблоко, сэндвич, апельсин,
+                брокколи, морковь, хот-дог, пицца, пончик, торт, стул, диван, растение в горшке, кровать, обеденный
+                стол, туалет, телевизор, ноутбук,
+                мышь, пульт, клавиатура, мобильный телефон, микроволновая печь, духовка, тостер, раковина, холодильник,
+                книга, часы, ваза, ножницы, плюшевый мишка, фен, зубная щетка</p> <br>
+            <p> Но и это не всё Yolo можно очень просто обучить на распознавание чего угодно, об обучении этой модели вы
+                узнаете в следующей статье, которая выйдет когда ни будь но не сейчас  :)
+            </p>
         </article>
     </main>
-    <footer></footer>
 </body>
+
 </html>
